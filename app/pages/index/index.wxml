@@ -47,7 +47,7 @@
                     <view class="weui-label">粗糙度</view>
                 </view>
                 <view class="weui-cell__bd">
-                    <input class="weui-input" type="digit" placeholder="根据管道材质选择" bindinput="inputFn" data-name="dateLong" />
+                    <input class="weui-input" type="digit" placeholder="根据管道材质选择" value="{{dateLong}}" bindinput="inputFn" data-name="dateLong" />
                 </view>
                 <view class="weui-cell__ft"  bindtap="selectDateType">
                     <text>{{dayType}}</text>

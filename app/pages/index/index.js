@@ -31,27 +31,27 @@ Page({
             itemList: ['1', '2', '3'],
             success(res) {
               console.log(that);
-              let dayType = that.dayType
+            
 
                 switch (res.tapIndex) {
                     case 0:
-                        dayType = '1'
-                    dateLong = '1'
+                    that.data.dayType = '1'
+                    that.data.dateLong = '1'
                         break
                     case 1:
-                        dayType = '2'
-                    dateLong = '2'
+                    that.data.dayType = '2'
+                    that.data.dateLong= '2'
                         break
                     case 2:
-                        dayType = '3'
-                    dateLong = '3'
+                    that.data.dayType = '3'
+                    that.data.dateLong = '3'
                         break
                 }
-              console.log(dayType);
+        
                 that.setData({
-                    dayType: dayType
+                  dayType: that.data.dayType,
+                  dateLong: that.data.dayType
                 })
-
                 that.calcFn()
             },
           fail(res){
@@ -88,15 +88,15 @@ Page({
 
         this.calcFn() // 因为有微信的数字键盘，所以很放心不用担心输入不是数字？
     },
-    // calcFn() {
-    //     let amount = this.data.amount,
-    //         falseRate = this.data.falseRate,
-    //         dateLong = this.data.dateLong, // 投入时长，默认计算单位：天
-    //         xxMoney1 = this.data.xxMoney1,
-    //         xxDay = this.data.xxDay,
-    //         dayType = this.data.dayType,
-    //         minusDay = 0, // 各种要减的天
-    //         minusMoney = 0 // 各种要减的钱
+     calcFn() {
+        let amount = this.data.amount,
+            falseRate = this.data.falseRate,
+            dateLong = this.data.dateLong, // 投入时长，默认计算单位：天
+            xxMoney1 = this.data.xxMoney1,
+            xxDay = this.data.xxDay,
+            dayType = this.data.dayType,
+            minusDay = 0, // 各种要减的天
+            minusMoney = 0 // 各种要减的钱
 
     //     if (amount == 0 || falseRate == 0 || dateLong == 0 || isNaN(dateLong)) {
     //         this.setData({
@@ -117,7 +117,7 @@ Page({
 
     //     // 真实收益(预期收益减去损耗费用)
     //     // let trueIncome = falseIncome - minusMoney
-    //   let trueIncome = amount * dateLong * xxDay * falseRate;
+       let trueIncome = amount * dateLong * xxDay * falseRate;
     //     // 真实利率
     //     // 如果没有各种扣扣扣，为了不让计算真实利率的公式出错。直接等于预期利率
     //     let trueRate = falseRate
@@ -134,14 +134,14 @@ Page({
     //     // console.log('真实利率trueRate', trueRate)
 
     //     falseIncome = Util.numberComma(falseIncome.toFixed(2))
-    //     trueIncome = Util.numberComma(trueIncome.toFixed(2))
+         trueIncome = Util.numberComma(trueIncome.toFixed(2))
 
-    //     this.setData({
-    //         falseIncome: falseIncome,
-    //         trueIncome: trueIncome,
-    //         trueRate: trueRate
-    //     })
-    // },
+        this.setData({
+        
+            trueIncome: trueIncome
+  
+        })
+     },
     onLoad() {
         wx.setNavigationBarTitle({ title: '非淹没排河口管道流量计算器' })
 
